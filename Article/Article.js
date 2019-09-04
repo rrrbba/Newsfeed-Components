@@ -119,24 +119,25 @@ data.forEach(data => {
 })
 
 function createArticle(title, date, firstParagraph, secondParagraph,thirdParagraph){
-  const card = document.createElement('div');
+  const article = document.createElement('div');
   const h2 = document.createElement('h2');
-  const h3 = document.createElement('h3');
+  const h3 = document.createElement('p');
   const para1 = document.createElement('p');
   const para2 = document.createElement('p');
   const para3 = document.createElement('p');
   const expander = document.createElement('span');
   
   //add structure(append)
-  card.appendChild(h2);
-  card.appendChild(h3);
-  card.appendChild(para1);
-  card.appendChild(para2);
-  card.appendChild(para3);
-  card.appendChild(expander);
+  article.appendChild(h2);
+  article.appendChild(h3);
+  article.appendChild(expander);
+  article.appendChild(para1);
+  article.appendChild(para2);
+  article.appendChild(para3);
+ 
 
   //add class
-  card.classList.add('article');
+  article.classList.add('article');
   h3.classList.add('date');
   expander.classList.add('expandButton');
 
@@ -146,12 +147,16 @@ function createArticle(title, date, firstParagraph, secondParagraph,thirdParagra
    para1.textContent = firstParagraph;
    para2.textContent = secondParagraph;
    para3.textContent = thirdParagraph;
+   expander.textContent = 'Expand';
+   
 
 
   //add eventListener
-  expander.addEventListener('click', (e) => {
+  expander.addEventListener('click', () => {
+    console.log('clicked')
     article.classList.toggle('article-open');
+    
   });
 
- return card
+ return article
 }
