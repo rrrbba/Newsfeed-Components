@@ -112,3 +112,46 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+const articles = document.querySelector('.articles');
+
+data.forEach(data => {
+  articles.appendChild(createArticle(data.title, data.date, data.firstParagraph,data.secondParagraph, data.thirdParagraph))
+})
+
+function createArticle(title, date, firstParagraph, secondParagraph,thirdParagraph){
+  const card = document.createElement('div');
+  const h2 = document.createElement('h2');
+  const h3 = document.createElement('h3');
+  const para1 = document.createElement('p');
+  const para2 = document.createElement('p');
+  const para3 = document.createElement('p');
+  const expander = document.createElement('span');
+  
+  //add structure(append)
+  card.appendChild(h2);
+  card.appendChild(h3);
+  card.appendChild(para1);
+  card.appendChild(para2);
+  card.appendChild(para3);
+  card.appendChild(expander);
+
+  //add class
+  card.classList.add('article');
+  h3.classList.add('date');
+  expander.classList.add('expandButton');
+
+   //add content 
+   h2.textContent = title;
+   h3.textContent = date;
+   para1.textContent = firstParagraph;
+   para2.textContent = secondParagraph;
+   para3.textContent = thirdParagraph;
+
+
+  //add eventListener
+  expander.addEventListener('click', (e) => {
+    article.classList.toggle('article-open');
+  });
+
+ return card
+}
