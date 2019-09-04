@@ -20,7 +20,8 @@ const data = [
     thirdParagraph: `Dagobah hutt jawa leia calamari ventress skywalker yoda. Binks wicket hutt coruscant sidious
         naboo ackbar tatooine. Hutt lars padmé darth. Maul solo darth darth jabba qui-gon chewbacca darth maul. Moff baba wicket
         han. C-3po antilles moff qui-gon ahsoka aayla dooku amidala. Palpatine droid amidala droid k-3po twi'lek padmé wookiee. Leia
-        moff calamari mon obi-wan. Solo grievous lando coruscant. Jinn darth palpatine obi-wan mon.`
+        moff calamari mon obi-wan. Solo grievous lando coruscant. Jinn darth palpatine obi-wan mon.`,
+
   },
   {
     title: 'Javascript and You, ES6',
@@ -84,7 +85,16 @@ const data = [
 
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
-          Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+          Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`,
+  },
+  {
+    title: 'Gibberish & Cats Because I Can',
+    date: 'Sep 4th, 2019',
+    firstParagraph: `These example sentences are selected automatically from various online news sources to reflect current usage of the word 'article.' Views expressed in the examples do not represent the opinion of Merriam-Webster or its editors. `,
+
+    secondParagraph: `The cat (Felis catus) is a small carnivorous mammal. It is the only domesticated species in the family Felidae and often referred to as the domestic cat to distinguish it from wild members of the family. The cat is either a house cat or a farm cat, which are pets, or a feral cat, which ranges freely and avoids human contact. A house cat is valued by humans for companionship and for its ability to hunt rodents. About 60 cat breeds are recognized by various cat registries.`,
+
+    thirdParagraph: `As of 2017, the domestic cat was the second-most popular pet in the U.S. by number of pets owned, after freshwater fish, with 95 million cats owned. In the United Kingdom, around 7.3 million cats lived in more than 4.8 million households as of 2019. In 1965, the country's cat population was 4.1 million.`
   }
 ];
 
@@ -112,3 +122,50 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+const articles = document.querySelector('.articles');
+
+data.forEach(data => {
+  articles.appendChild(createArticle(data.title, data.date, data.firstParagraph,data.secondParagraph, data.thirdParagraph))
+})
+
+function createArticle(title, date, firstParagraph, secondParagraph,thirdParagraph){
+  const article = document.createElement('div');
+  const h2 = document.createElement('h2');
+  const h3 = document.createElement('p');
+  const para1 = document.createElement('p');
+  const para2 = document.createElement('p');
+  const para3 = document.createElement('p');
+  const expander = document.createElement('span');
+  
+  //add structure(append)
+  article.appendChild(h2);
+  article.appendChild(h3);
+  article.appendChild(expander);
+  article.appendChild(para1);
+  article.appendChild(para2);
+  article.appendChild(para3);
+ 
+
+  //add class
+  article.classList.add('article');
+  h3.classList.add('date');
+  expander.classList.add('expandButton');
+
+   //add content 
+   h2.textContent = title;
+   h3.textContent = date;
+   para1.textContent = firstParagraph;
+   para2.textContent = secondParagraph;
+   para3.textContent = thirdParagraph;
+   expander.textContent = 'Expand';
+   
+
+
+  //add eventListener
+  expander.addEventListener('click', () => {
+    article.classList.toggle('article-open');
+    
+  });
+
+ return article
+}
